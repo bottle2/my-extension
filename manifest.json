@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "my-stuff",
+  "version": "1.0",
+
+  "description": "abracadabra",
+
+  "permissions": ["activeTab", "scripting", "nativeMessaging"],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ping_pong@example.org",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "action": {
+    "default_title": "Beastify",
+    "default_popup": "popup/choose_beast.html"
+  }
+}
