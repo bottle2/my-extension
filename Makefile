@@ -8,4 +8,4 @@ $(BANANA):ping_pong.json
 	sed 's|REPL|$(APPLE)|' < ping_pong.json > $(BANANA)
 
 test:test.c
-	cc -Wpedantic -Wall -Wextra test.c -o test
+	cc -DREPL='"$(APPLE)/debug.txt"' -Wpedantic -Wall -Wextra test.c -o test

@@ -3,7 +3,7 @@
 
 int main(void)
 {
-  FILE *debug = fopen("/home/pebolim/Projetos/my-extension/debug.txt","wb");
+  FILE *debug = fopen(REPL,"wb");
   fprintf(debug,"0");
   fprintf(stderr,"native: Hello, world!\n");
   for (int c; (c = getchar()) != EOF; )
