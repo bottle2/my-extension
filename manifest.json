@@ -5,7 +5,16 @@
 
   "description": "abracadabra",
 
-  "permissions": ["activeTab", "scripting", "nativeMessaging"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "nativeMessaging",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "webRequestFilterResponse"
+  ],
+  "host_permissions": ["<all_urls>"],
 
   "browser_specific_settings": {
     "gecko": {
@@ -16,8 +25,11 @@
     }
   },
 
-  "action": {
-    "default_title": "Beastify",
-    "default_popup": "popup/choose_beast.html"
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
   }
 }

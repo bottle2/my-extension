@@ -1,2 +1,5 @@
 test
-debug.txt
+test.c
+background.c
+background.js
+background.wasm
