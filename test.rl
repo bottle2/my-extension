@@ -86,24 +86,23 @@ static unsigned long ilog10(int x);
     } while (0);
   }
 
-  u1 = alnum | [+/];
-  u2 = alnum | "-" | "_";
+  u = alnum | [+/_] | "-";
 
           #  0  | 16  | 32  | 48
   remain2 = "A" | "Q" | "g" | "w";
   remain3 = "A" | "E" | "I" | "M" | "Q" | "U" | "Y" | "c" | "g" | "k" | "o" | "s" | "w" | "0" | "4" | "8";
           #  0  |  4  |  8  | 12  | 16  | 20  | 24  | 28  | 32  | 36  | 40  | 44  | 48  | 52  | 56  | 60
 
-  base64    = u1{4}* (u1 remain2 "=="{,2} | u1{2} remain3 "="?)?;
-  base64url = u2{4}* (u2 remain2 "=="{,2} | u2{2} remain3 "="?)?;
+  base64gen = u{4}* (u remain2 "=="{,2} | u{2} remain3 "="?)?;
+
+  base64    = base64gen -- ("-" | "_");
+  base64url = base64gen -- [+/];
 
   file = ((base64url -- "=") "." [^/,]*) - "..";
 
-  payload = base64 | base64url;
-
   action error { SLURP(fcurs); } 
 
-  message = "\"" [aw] @set_mode file $cp %open "," payload $decode "\"";
+  message = "\"" [aw] @set_mode file $cp %open "," base64gen $decode "\"";
 
   main := message $!error;
 }%%

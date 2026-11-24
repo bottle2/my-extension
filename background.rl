@@ -68,6 +68,7 @@
                      | "audio/3gpp"  %{a = "3gp";}
                      | "video/3gpp2" %{a = "3g2";}
                      | "audio/3gpp2" %{a = "3g2";}
+                     | "application/vnd.adobe.flash.movie" %{a = "swf";}
                      ;
   excluded_mime_type = "image/svg+xml";
 
